@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "ten": "Avengers: Endgame",
+    "gio": "19:00",
+    "ghe": {
+      "A1": "quang",
+      "A2": "toan",
+      "A3": "dat",
+      "B1": "trong",
+      "B2": "ttt"
+    }
+  },
+  {
+    "id": 2,
+    "ten": "Conan: Tàu Ngầm Sắt Màu Đen",
+    "gio": "21:00",
+    "ghe": {
+      "A1": "trong",
+      "A2": "dat",
+      "A3": "trong",
+      "B1": "dat",
+      "B2": "tho"
+    }
+  }
+]
