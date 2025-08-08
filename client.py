@@ -161,6 +161,19 @@ class SeatBookingPage(tk.Frame):
     def display_seats(self, seats):
         """Hàm này sẽ tự động nhóm các ghế theo hàng A, B, C... và hiển thị"""
         for widget in self.seats_frame.winfo_children(): widget.destroy()
+     # Nhóm các ghế theo chữ cái đầu tiên (A, B, C...)
+        grouped_seats = defaultdict(dict)
+        for seat_name, status in seats.items():
+            match = re.match(r"([A-Z]+)(\d+)", seat_name)
+            if match:
+                row_letter = match.group(1)
+                grouped_seats[row_letter][seat_name] = status
+
+        # Hiển thị các ghế theo từng hàng đã nhóm
+        # Sắp xếp các hàng theo thứ tự alphabet (A, B, C...)
+        sorted_rows = sorted(grouped_seats.keys())
+
+
 if __name__ == "__main__":
     if client:
         app = BookingApp()
