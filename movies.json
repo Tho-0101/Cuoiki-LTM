@@ -22,5 +22,65 @@
       "B1": "dat",
       "B2": "tho"
     }
+  },
+  {
+    "id": 3,
+    "ten": "Spider-Man: No Way Home",
+    "gio": "17:30",
+    "ghe": {
+      "A1": "hung",
+      "A2": "dat",
+      "A3": "bao",
+      "B1": "trong",
+      "B2": "trong"
+    }
+  },
+  {
+    "id": 4,
+    "ten": "Fast & Furious 10",
+    "gio": "20:15",
+    "ghe": {
+      "A1": "quang",
+      "A2": "trong",
+      "A3": "lam",
+      "B1": "thu",
+      "B2": "trong"
+    }
+  },
+  {
+    "id": 5,
+    "ten": "Doctor Strange in the Multiverse of Madness",
+    "gio": "18:45",
+    "ghe": {
+      "A1": "trong",
+      "A2": "mai",
+      "A3": "tuan",
+      "B1": "bao",
+      "B2": "trong"
+    }
+  },
+  {
+    "id": 6,
+    "ten": "Black Panther: Wakanda Forever",
+    "gio": "22:00",
+    "ghe": {
+      "A1": "dat",
+      "A2": "trong",
+      "A3": "quang",
+      "B1": "lam",
+      "B2": "tien"
+    }
+  },
+  {
+    "id": 7,
+    "ten": "Minions: Sự Trỗi Dậy Của Gru",
+    "gio": "16:00",
+    "ghe": {
+      "A1": "trong",
+      "A2": "thao",
+      "A3": "bao",
+      "B1": "dat",
+      "B2": "trong"
+    }
   }
 ]
