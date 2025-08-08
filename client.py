@@ -122,6 +122,45 @@ class MovieSelectionPage(tk.Frame):
         if movie_data:
             self.controller.go_to_booking_page(movie_data)
 
+# TRANG 2 - ĐẶT VÉ
+class SeatBookingPage(tk.Frame):
+    def __init__(self, parent, controller):
+        super().__init__(parent, bg='white')
+        self.controller = controller
+        self.selected_seats = set()
+        header_font = font.Font(family="Segoe UI", size=14, weight='bold')
+        body_font = font.Font(family="Segoe UI", size=10)
+        
+        top_bar = tk.Frame(self, bg="#343a40", pady=5)
+        top_bar.pack(fill=tk.X, side=tk.TOP)
+        tk.Button(top_bar, text="🠔 Quay lại", command=lambda: controller.show_frame(MovieSelectionPage), bg="#6c757d", fg="white", font=body_font, relief=tk.FLAT).pack(side=tk.LEFT, padx=10)
+        self.movie_title_label = tk.Label(top_bar, text="", bg="#343a40", fg="white", font=header_font)
+        self.movie_title_label.pack(side=tk.LEFT, expand=True)
+
+        screen_label = tk.Label(self, text="M À N   H Ì N H", font=("Segoe UI", 12, "bold"), bg="black", fg="white", pady=5, relief=tk.GROOVE, borderwidth=2)
+        screen_label.pack(fill=tk.X, pady=(10, 5), padx=100)
+
+        self.seats_frame = tk.Frame(self, bg='white', padx=10, pady=10)
+        self.seats_frame.pack(fill=tk.BOTH, expand=True)
+
+        bottom_frame = tk.Frame(self, bg='#f0f2f5', pady=10)
+        bottom_frame.pack(fill=tk.X, side=tk.BOTTOM)
+        tk.Label(bottom_frame, text="Ghế đã chọn:", bg='#f0f2f5', font=body_font).pack(side=tk.LEFT, padx=10)
+        self.seat_display_var = tk.StringVar()
+        tk.Entry(bottom_frame, textvariable=self.seat_display_var, width=30, font=body_font, state='readonly').pack(side=tk.LEFT)
+        tk.Button(bottom_frame, text="✓ Đặt Vé", command=self.book_ticket, bg='#28a745', fg='white', font=body_font, relief=tk.FLAT).pack(side=tk.RIGHT, padx=20)
+
+    def on_show(self):
+        movie = self.controller.current_movie_data
+        if movie:
+            self.movie_title_label.config(text=movie['ten'])
+            self.selected_seats.clear()
+            self.seat_display_var.set("")
+            self.display_seats(movie['ghe'])
+
+    def display_seats(self, seats):
+        """Hàm này sẽ tự động nhóm các ghế theo hàng A, B, C... và hiển thị"""
+        for widget in self.seats_frame.winfo_children(): widget.destroy()
 if __name__ == "__main__":
     if client:
         app = BookingApp()
