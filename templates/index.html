@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaithoCinema</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-page">
+            <h1 class="cinema-title">Chào mừng đến DaithoCinema</h1>
+            <div class="login-box">
+                <h2>Thông tin khách hàng</h2>
+                <div class="form-group">
+                    <label for="name">Tên khách hàng:</label>
+                    <input type="text" id="name" placeholder="Ví dụ: Nguyễn Văn A">
+                </div>
+                <div class="form-group">
+                    <label for="sdt">Số điện thoại:</label>
+                    <input type="text" id="sdt" placeholder="Ví dụ: 090xxxxxxx">
+                </div>
+                <button id="login-btn" class="btn-primary">Vào xem phim</button>
+            </div>
+        </div>
+
+        <div id="selection-page" class="hidden">
+            <div class="top-bar-user">
+                <span id="user-info"></span>
+                <div>
+                    <button id="my-tickets-btn" class="btn-secondary">Vé của tôi</button>
+                    <button id="logout-btn" class="btn-danger">Đăng xuất</button>
+                </div>
+            </div>
+            <h2>Chọn suất chiếu</h2>
+            <div class="form-group">
+                <label for="date-picker">Chọn ngày:</label>
+                <input type="date" id="date-picker">
+            </div>
+            <div id="movie-showtimes-container">
+                </div>
+        </div>
+        
+        <div id="my-tickets-page" class="hidden">
+            <div class="top-bar">
+                 <button id="back-to-selection-btn">🠔 Quay lại trang chọn phim</button>
+                 <h1>Vé Của Bạn</h1>
+            </div>
+            <div id="ticket-display-area">
+                </div>
+        </div>
+
+
+        <div id="booking-page" class="hidden">
+            <div class="top-bar">
+                <button id="back-to-selection-from-booking-btn">🠔 Quay lại</button>
+                <h1 id="movie-title-booking">Tên phim</h1>
+            </div>
+            <h3 id="showtime-info"></h3>
+            <div class="screen">M À N   H Ì N H</div>
+            <div id="seat-map" class="seat-map-container">
+                </div>
+            <div class="booking-actions">
+                <span>Ghế đã chọn: <strong id="selected-seats-display"></strong></span>
+                <button id="book-ticket-btn" class="btn-primary">✓ Xác nhận đặt vé</button>
+            </div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
