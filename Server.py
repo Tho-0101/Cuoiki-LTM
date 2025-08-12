@@ -1,110 +1,101 @@
-# server.py
-import socket
-import threading
-import json
 import os
+import json
+from flask import Flask, jsonify, request, render_template
+from flask_cors import CORS
+from datetime import datetime
 
-HEADER = 64
-PORT = 6060
-SERVER = socket.gethostbyname(socket.gethostname())
-ADDR = (SERVER, PORT)
-FORMAT = 'utf-8'
+# Khởi tạo Flask App
+app = Flask(__name__, template_folder='templates', static_folder='static')
+CORS(app)
 
-# Đường dẫn tuyệt đối đến file movies.json
+# --- Logic để tìm file movies.json ---
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 movies_file = os.path.join(BASE_DIR, "movies.json")
 
-server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(ADDR)
+# --- Các "đường dẫn" (Routes) ---
 
-# <<< THÊM MỚI: Tạo một Lock để bảo vệ việc đọc/ghi file movies.json
-file_lock = threading.Lock()
+@app.route('/')
+def index():
+    """Đường dẫn chính, phục vụ file giao diện HTML"""
+    return render_template('index.html')
 
-def handle_client(conn, addr):
-    print(f"[NEW CONNECTION] {addr} connected.")
-    connected = True
-    while connected:
-        try:
-            # <<< THAY ĐỔI: Đọc header trước để biết độ dài của tin nhắn
-            msg_length_header = conn.recv(HEADER)
-            if not msg_length_header:
-                break
+@app.route('/api/showtimes', methods=['GET'])
+def get_showtimes():
+    """API để lấy các suất chiếu theo ngày"""
+    selected_date = request.args.get('date')
+    if not selected_date:
+        selected_date = datetime.today().strftime('%Y-%m-%d')
 
-            msg_length = int(msg_length_header.decode(FORMAT))
-            # <<< THAY ĐỔI: Đọc chính xác số byte của tin nhắn
-            msg = conn.recv(msg_length).decode(FORMAT)
+    try:
+        with open(movies_file, "r", encoding="utf-8") as f:
+            all_movies = json.load(f)
+        
+        # Lọc các phim và suất chiếu có trong ngày được chọn
+        movies_on_date = []
+        for movie in all_movies:
+            showtimes_on_date = [st for st in movie.get("suat_chieu", []) if st["ngay"] == selected_date]
+            if showtimes_on_date:
+                movie_copy = movie.copy()
+                movie_copy["suat_chieu"] = showtimes_on_date
+                movies_on_date.append(movie_copy)
+                
+        return jsonify(movies_on_date)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/book', methods=['POST'])
+def book_ticket():
+    """API để xử lý việc đặt vé cho một suất chiếu cụ thể"""
+    data = request.get_json()
+
+    # Thêm bước kiểm tra để đảm bảo server nhận được dữ liệu hợp lệ
+    if not data:
+        return jsonify({"status": "fail", "message": "Yêu cầu không hợp lệ."}), 400
+
+    movie_id = data.get("movie_id")
+    show_date = data.get("date")
+    show_time = data.get("time")
+    seats_to_book = data.get("seats")
+    name = data.get("name")
+    sdt = data.get("sdt")
+
+    if not all([movie_id, show_date, show_time, seats_to_book, name, sdt]):
+        return jsonify({"status": "fail", "message": "Thiếu thông tin đặt vé."}), 400
+
+    try:
+        with open(movies_file, "r+", encoding="utf-8") as f:
+            movies = json.load(f)
+            movie_to_update = next((m for m in movies if m["id"] == movie_id), None)
             
-            data = json.loads(msg)
-            print(f"[RECV] from {addr}: {data}")
+            if not movie_to_update:
+                return jsonify({"status": "fail", "message": "Phim không tồn tại."}), 404
 
-            response_data = {} # Chuẩn bị dữ liệu để gửi lại
+            # Tìm đúng suất chiếu theo ngày và giờ
+            showtime_to_update = next((st for st in movie_to_update["suat_chieu"] if st["ngay"] == show_date and st["gio"] == show_time), None)
+            
+            if not showtime_to_update:
+                return jsonify({"status": "fail", "message": "Suất chiếu không tồn tại."}), 404
 
-            if data.get("action") == "get_movies":
-                try:
-                    # <<< THAY ĐỔI: Sử dụng lock khi đọc file để đảm bảo an toàn
-                    with file_lock:
-                        with open(movies_file, "r", encoding="utf-8") as f:
-                            movies = json.load(f)
-                    response_data = movies
-                except Exception as e:
-                    print(f"Lỗi đọc movies.json: {e}")
-                    response_data = []
+            for seat in seats_to_book:
+                if seat not in showtime_to_update["ghe"]:
+                    return jsonify({"status": "fail", "message": f"Ghế {seat} không hợp lệ."}), 400
+                if showtime_to_update["ghe"][seat] != "trong":
+                    return jsonify({"status": "fail", "message": f"Ghế {seat} đã được đặt."}), 409
 
-            elif data.get("action") == "book":
-                movie_id = data.get("movie_id")
-                seat = data.get("seat")
-                name = data.get("name")
+            customer_info = f"{name} ({sdt})"
+            for seat in seats_to_book:
+                showtime_to_update["ghe"][seat] = customer_info
+            
+            f.seek(0)
+            json.dump(movies, f, indent=2, ensure_ascii=False)
+            f.truncate()
 
-                # <<< THAY ĐỔI: Toàn bộ quá trình đặt vé được đặt trong một lock
-                with file_lock:
-                    try:
-                        with open(movies_file, "r", encoding="utf-8") as f:
-                            movies = json.load(f)
+        return jsonify({"status": "success", "message": f"Đặt vé thành công!"})
+    except Exception as e:
+        # Ghi lại lỗi ra terminal của server để bạn có thể thấy
+        print(f"Đã xảy ra lỗi nghiêm trọng: {e}") 
+        return jsonify({"status": "fail", "message": f"Lỗi hệ thống: {str(e)}"}), 500
 
-                        movie = next((m for m in movies if m["id"] == movie_id), None)
-                        if not movie:
-                            response_data = {"status": "fail", "message": "Phim không tồn tại"}
-                        elif seat not in movie["ghe"]:
-                            response_data = {"status": "fail", "message": "Ghế không hợp lệ"}
-                        elif movie["ghe"][seat] != "trong":
-                            response_data = {"status": "fail", "message": "Ghế này đã được đặt rồi"}
-                        else:
-                            # Cập nhật thông tin
-                            movie["ghe"][seat] = name
-                            # Ghi lại vào file
-                            with open(movies_file, "w", encoding="utf-8") as f:
-                                json.dump(movies, f, indent=2, ensure_ascii=False)
-                            response_data = {"status": "success", "message": f"Đặt vé thành công ghế {seat}"}
-
-                    except Exception as e:
-                        print(f"Lỗi khi đặt vé: {e}")
-                        response_data = {"status": "fail", "message": "Lỗi hệ thống"}
-
-            # <<< THAY ĐỔI: Gửi lại phản hồi cho client theo giao thức header + nội dung
-            response_json = json.dumps(response_data, ensure_ascii=False).encode(FORMAT)
-            response_header = f"{len(response_json):<{HEADER}}".encode(FORMAT)
-            conn.send(response_header + response_json)
-
-        except (ConnectionResetError, json.JSONDecodeError):
-            # Lỗi này xảy ra khi client ngắt kết nối đột ngột hoặc gửi dữ liệu sai
-            print(f"[WARNING] Connection from {addr} was reset or sent invalid data.")
-            break
-        except Exception as e:
-            print(f"[ERROR] An unexpected error occurred with {addr}: {e}")
-            break
-
-    print(f"[DISCONNECTED] {addr} disconnected.")
-    conn.close()
-
-def start():
-    server.listen()
-    print(f"[STARTING] Server khởi động...")
-    print(f"[LISTENING] Server đang chạy tại {SERVER}:{PORT}")
-    while True:
-        conn, addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn, addr))
-        thread.start()
-        print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
-
-if __name__ == "__main__":
-    start()
+# --- Chạy server ---
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
