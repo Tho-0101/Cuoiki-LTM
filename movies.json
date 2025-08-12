@@ -1,26 +1,71 @@
 [
   {
     "id": 1,
-    "ten": "Avengers: Endgame",
-    "gio": "19:00",
-    "ghe": {
-      "A1": "quang",
-      "A2": "toan",
-      "A3": "dat",
-      "B1": "trong",
-      "B2": "ttt"
-    }
+    "ten": "Conan: Dư Ảnh Độc Nhãn",
+    "mo_ta": "Bối cảnh chính của phim diễn ra tại vùng núi tuyết Nagano, xoay quanh vụ án liên quan đến vụ lở tuyết bí ẩn trong quá khứ, khiến thanh tra Yamato Kansuke bị mất một bên mắt.",
+    "poster": "static/images/conan.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-09",
+        "gio": "19:00",
+        "ghe": {
+          "A1": "tt (0221)",
+          "A2": "tt (0221)",
+          "A3": "tt (0221)",
+          "B1": "tt (0221)",
+          "B2": "T (1)"
+        }
+      },
+      {
+        "ngay": "2025-08-09",
+        "gio": "21:30",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "tt (0221)",
+          "B1": "trong",
+          "B2": "trong"
+        }
+      },
+      {
+        "ngay": "2025-08-10",
+        "gio": "19:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "trong",
+          "B1": "trong",
+          "B2": "trong"
+        }
+      }
+    ]
   },
   {
     "id": 2,
-    "ten": "Conan: Tàu Ngầm Sắt Màu Đen",
-    "gio": "21:00",
-    "ghe": {
-      "A1": "trong",
-      "A2": "dat",
-      "A3": "trong",
-      "B1": "dat",
-      "B2": "tho"
-    }
+    "ten": "Thanh Gươm Diệt Quỷ",
+    "mo_ta": "là phần cuối cùng trong loạt phim điện ảnh chuyển thể từ manga \"Thanh Gươm Diệt Quỷ\", xoay quanh trận chiến cuối cùng giữa Sát Quỷ Đoàn và chúa quỷ Muzan Kibutsuji tại Vô Hạn Thành.",
+    "poster": "static/images/thanhguom.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-09",
+        "gio": "20:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "B1": "tt (0221)",
+          "B2": "tt (0221)"
+        }
+      },
+      {
+        "ngay": "2025-08-10",
+        "gio": "21:00",
+        "ghe": {
+          "A1": "tt (0221)",
+          "A2": "trong",
+          "B1": "tt (0221)",
+          "B2": "tt (0221)"
+        }
+      }
+    ]
   }
 ]
