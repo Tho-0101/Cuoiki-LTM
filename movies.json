@@ -13,6 +13,47 @@
   },
   {
     "id": 2,
+    "ten": "Conan: Dư Ảnh Độc Nhãn",
+    "mo_ta": "Bối cảnh chính của phim diễn ra tại vùng núi tuyết Nagano, xoay quanh vụ án liên quan đến vụ lở tuyết bí ẩn trong quá khứ, khiến thanh tra Yamato Kansuke bị mất một bên mắt.",
+    "poster": "static/images/conan.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-09",
+        "gio": "19:00",
+        "ghe": {
+          "A1": "tt (0221)",
+          "A2": "tt (0221)",
+          "A3": "tt (0221)",
+          "B1": "tt (0221)",
+          "B2": "T (1)"
+        }
+      },
+      {
+        "ngay": "2025-08-09",
+        "gio": "21:30",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "tt (0221)",
+          "B1": "trong",
+          "B2": "trong"
+        }
+      },
+      {
+        "ngay": "2025-08-10",
+        "gio": "19:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "trong",
+          "B1": "trong",
+          "B2": "trong"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
     "ten": "Conan: Tàu Ngầm Sắt Màu Đen",
     "gio": "21:00",
     "ghe": {
@@ -24,63 +65,91 @@
     }
   },
   {
-    "id": 3,
-    "ten": "Spider-Man: No Way Home",
-    "gio": "17:30",
-    "ghe": {
-      "A1": "hung",
-      "A2": "dat",
-      "A3": "bao",
-      "B1": "trong",
-      "B2": "trong"
-    }
-  },
-  {
     "id": 4,
-    "ten": "Fast & Furious 10",
-    "gio": "20:15",
-    "ghe": {
-      "A1": "quang",
-      "A2": "trong",
-      "A3": "lam",
-      "B1": "thu",
-      "B2": "trong"
-    }
+    "ten": "Thanh Gươm Diệt Quỷ",
+    "mo_ta": "Là phần cuối cùng trong loạt phim điện ảnh chuyển thể từ manga \"Thanh Gươm Diệt Quỷ\", xoay quanh trận chiến cuối cùng giữa Sát Quỷ Đoàn và chúa quỷ Muzan Kibutsuji tại Vô Hạn Thành.",
+    "poster": "static/images/thanhguom.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-09",
+        "gio": "20:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "B1": "tt (0221)",
+          "B2": "tt (0221)"
+        }
+      },
+      {
+        "ngay": "2025-08-10",
+        "gio": "21:00",
+        "ghe": {
+          "A1": "tt (0221)",
+          "A2": "trong",
+          "B1": "tt (0221)",
+          "B2": "tt (0221)"
+        }
+      }
+    ]
   },
   {
     "id": 5,
-    "ten": "Doctor Strange in the Multiverse of Madness",
-    "gio": "18:45",
-    "ghe": {
-      "A1": "trong",
-      "A2": "mai",
-      "A3": "tuan",
-      "B1": "bao",
-      "B2": "trong"
-    }
+    "ten": "Người Sói Đen Tối",
+    "mo_ta": "Một cảnh sát ngầm bị đẩy vào vòng xoáy tội phạm công nghệ cao. Trong đêm mưa nhẹ, anh bị lôi cuốn vào trận chiến sống còn giữa các thế lực ngầm, nơi sự thật đen tối dần hé lộ.",
+    "poster": "static/images/nguoisoi.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-16",
+        "gio": "18:30",
+        "ghe": {
+          "A1": "trong",
+          "A2": "dat",
+          "A3": "trong",
+          "B1": "tt (0456)",
+          "B2": "trong"
+        }
+      },
+      {
+        "ngay": "2025-08-17",
+        "gio": "20:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "tt (0456)",
+          "B1": "dat",
+          "B2": "trong"
+        }
+      }
+    ]
   },
   {
     "id": 6,
-    "ten": "Black Panther: Wakanda Forever",
-    "gio": "22:00",
-    "ghe": {
-      "A1": "dat",
-      "A2": "trong",
-      "A3": "quang",
-      "B1": "lam",
-      "B2": "tien"
-    }
-  },
-  {
-    "id": 7,
-    "ten": "Minions: Sự Trỗi Dậy Của Gru",
-    "gio": "16:00",
-    "ghe": {
-      "A1": "trong",
-      "A2": "thao",
-      "A3": "bao",
-      "B1": "dat",
-      "B2": "trong"
-    }
+    "ten": "Hành Tinh Cuối Đường Nguyen",
+    "mo_ta": "Trên hành tinh hư cấu Nguyen, một nữ nhà thám hiểm trẻ phát hiện ra dấu hiệu sự sống ngoài hành tinh. Cùng với đội bạn nhỏ, cô phải giải mã bí mật cổ xưa để cứu lấy nơi này khỏi diệt vong.",
+    "poster": "static/images/hanh_tinh_nguyen.jfif",
+    "suat_chieu": [
+      {
+        "ngay": "2025-08-16",
+        "gio": "17:00",
+        "ghe": {
+          "A1": "trong",
+          "A2": "trong",
+          "A3": "trong",
+          "B1": "trong",
+          "B2": "dat"
+        }
+      },
+      {
+        "ngay": "2025-08-18",
+        "gio": "19:30",
+        "ghe": {
+          "A1": "tt (0789)",
+          "A2": "trong",
+          "A3": "trong",
+          "B1": "tt (0789)",
+          "B2": "trong"
+        }
+      }
+    ]
   }
 ]
