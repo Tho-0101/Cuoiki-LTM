@@ -75,3 +75,122 @@ h1, h2, h3 {
     font-size: 1em;
 }
 
+/* Nút bấm */
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-transform: uppercase;
+}
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-primary { background-color: var(--cgv-red); color: white; }
+.btn-primary:hover { background-color: #e74c3c; }
+
+.btn-secondary { background-color: var(--cgv-gold); color: var(--dark-bg); }
+.btn-secondary:hover { background-color: #ffcc33; }
+
+.btn-danger { background-color: var(--secondary-color); color: white; }
+.btn-danger:hover { background-color: #5a6268; }
+
+#login-btn { width: 100%; }
+
+
+/* Trang Chọn Phim */
+.top-bar-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--dark-bg);
+    border-radius: var(--border-radius);
+}
+.top-bar-user > div { display: flex; gap: 10px; }
+#user-info { font-weight: bold; font-size: 1.1em; color: var(--cgv-gold); }
+
+#movie-showtimes-container { margin-top: 20px; }
+.movie-card {
+    display: flex;
+    margin-bottom: 25px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.movie-poster img { width: 150px; height: 100%; object-fit: cover; display: block; }
+.movie-details { padding: 20px; flex-grow: 1; }
+.movie-details h3 { text-align: left; margin-top: 0; color: var(--cgv-red); font-size: 1.5em; }
+.movie-description { margin-bottom: 15px; color: #ccc; }
+.showtimes { display: flex; flex-wrap: wrap; gap: 10px; }
+.showtime-btn {
+    background-color: transparent;
+    color: var(--cgv-gold);
+    border: 1px solid var(--cgv-gold);
+    font-weight: bold;
+}
+.showtime-btn:hover { background-color: var(--cgv-gold); color: var(--dark-bg); }
+
+/* Trang Đặt Vé & Vé Của Tôi */
+.top-bar { display: flex; align-items: center; background-color: var(--dark-bg); color: white; padding: 10px; border-radius: var(--border-radius); margin-bottom: 10px; }
+.top-bar h1 { margin: 0; padding-left: 20px; flex-grow: 1; text-align: left; font-size: 1.5em; color: var(--text-light); }
+.screen { background-color: #111; border-top: 3px solid var(--cgv-gold); color: #aaa; text-align: center; padding: 10px; margin: 25px auto; border-radius: 4px; letter-spacing: 5px; font-weight: bold; width: 60%; }
+
+.seat-map-container { display: flex; flex-direction: column; align-items: center; padding: 20px; gap: 10px; }
+.seat-row { display: flex; gap: 10px; }
+.seat { width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; border-radius: 4px; color: white; font-weight: bold; cursor: pointer; user-select: none; transition: transform 0.1s; }
+.seat:hover { transform: scale(1.1); }
+/* Giữ nguyên màu ghế để phân biệt trạng thái */
+.seat.available { background-color: #555; border: 1px solid #777; }
+.seat.available:hover { background-color: #666; }
+.seat.booked { background-color: #c81a1a; cursor: not-allowed; }
+.seat.selected { background-color: #007bff !important; border: 1px solid #52a8ff; }
+
+.booking-actions { margin-top: 20px; display: flex; justify-content: flex-end; align-items: center; }
+.booking-actions span { margin-right: auto; font-size: 1.1em; }
+#book-ticket-btn { background-color: var(--success-color); }
+
+/* CSS cho trang Vé Của Tôi */
+#ticket-display-area {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.ticket-card {
+    display: flex;
+    gap: 30px;
+    border: 2px solid var(--cgv-gold);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    align-items: center;
+    background-color: var(--dark-bg);
+}
+.ticket-card .movie-poster img { width: 150px; height: auto; display: block; border-radius: var(--border-radius); }
+.ticket-card .ticket-details { flex-grow: 1; font-size: 1.1em; }
+.ticket-card .ticket-details p { margin: 10px 0; }
+.ticket-card .ticket-details h3 { color: var(--cgv-red); }
+.ticket-card .qr-code { text-align: center; padding-left: 30px; border-left: 2px dashed #555; }
+.qr-code-placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%231d1d1d" d="M10 10h20v20h-20z M15 15h10v10h-10z M70 10h20v20h-20z M75 15h10v10h-10z M10 70h20v20h-20z M15 75h10v10h-10z M40 10h10v10h-10z M55 10h5v5h-5z M45 25h5v5h-5z M40 40h20v20h-20z M70 40h10v10h-10z M40 70h5v5h-5z M45 80h10v10h-10z M75 65h10v5h-10z M70 80h20v10h-20z"/></svg>');
+    background-size: contain;
+}
+.qr-code-text { font-size: 0.8em; color: #aaa; margin-top: 5px; }
