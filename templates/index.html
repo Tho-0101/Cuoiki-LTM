@@ -41,16 +41,6 @@
                 </div>
         </div>
         
-        <div id="my-tickets-page" class="hidden">
-            <div class="top-bar">
-                 <button id="back-to-selection-btn">🠔 Quay lại trang chọn phim</button>
-                 <h1>Vé Của Bạn</h1>
-            </div>
-            <div id="ticket-display-area">
-                </div>
-        </div>
-
-
         <div id="booking-page" class="hidden">
             <div class="top-bar">
                 <button id="back-to-selection-from-booking-btn">🠔 Quay lại</button>
@@ -62,8 +52,47 @@
                 </div>
             <div class="booking-actions">
                 <span>Ghế đã chọn: <strong id="selected-seats-display"></strong></span>
-                <button id="book-ticket-btn" class="btn-primary">✓ Xác nhận đặt vé</button>
+                <button id="go-to-payment-btn" class="btn-primary">Tiếp tục thanh toán</button>
             </div>
+        </div>
+
+        <div id="payment-page" class="hidden">
+             <div class="top-bar">
+                <button id="back-to-booking-btn">🠔 Quay lại chọn ghế</button>
+                <h1>Xác nhận thông tin & Thanh toán</h1>
+            </div>
+            <div class="payment-summary">
+                <div class="summary-details">
+                    <h3 id="payment-movie-title"></h3>
+                    <p id="payment-showtime-info"></p>
+                    <p><strong>Ghế đã chọn:</strong> <span id="payment-seats-list"></span></p>
+                    <hr>
+                    <p class="total-price">Tổng cộng: <span id="payment-total-price"></span></p>
+                </div>
+                <div class="payment-methods">
+                    <h3>Chọn phương thức thanh toán</h3>
+                    <div class="payment-option" data-method="Momo">
+                        <img src="https://upload.wikimedia.org/wikipedia/vi/f/fe/MoMo_Logo.png" alt="Momo">
+                        <span>Ví Momo</span>
+                    </div>
+                    <div class="payment-option" data-method="VNPAY">
+                        <img src="static/images/logovnpay.png" alt="VNPAY">
+                        <span>VNPAY-QR</span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button id="final-book-btn" class="btn-primary">XÁC NHẬN ĐẶT VÉ</button>
+            </div>
+        </div>
+
+        <div id="my-tickets-page" class="hidden">
+            <div class="top-bar">
+                 <button id="back-to-selection-btn">🠔 Quay lại trang chọn phim</button>
+                 <h1>Vé Của Bạn</h1>
+            </div>
+            <div id="ticket-display-area">
+                </div>
         </div>
     </div>
     <script src="/static/script.js"></script>
